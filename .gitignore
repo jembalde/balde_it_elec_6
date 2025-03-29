@@ -40,3 +40,15 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# ... existing entries ...
+
+# Ignore uploaded images
+backend/images/*
+# Keep the images folder but ignore its contents
+!backend/images/.gitkeep
+
+# Other common entries you might want:
+node_modules/
+.env
+dist/
