@@ -1,11 +1,24 @@
 const express = require('express');
-const app = express();
-const bodyparser = require("body-parser"); 
-// Parse JSON bodies
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const postsRoutes = require('./routes/posts');
 
-// Fix CORS middleware
+const app = express();
+
+// Connect to MongoDB - remove deprecated options
+mongoose.connect('mongodb+srv://jemmongo:VuvTldACNAbtTUxa@cluster0.kx8s8.mongodb.net/node-angular')
+.then(() => {
+  console.log('Connected to database!');
+})
+.catch((error) => {
+  console.log('Connection failed!', error.message);
+});
+
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// CORS Headers
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
@@ -14,50 +27,12 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     'Access-Control-Allow-Methods',
-    'GET, POST, PATCH, DELETE, OPTIONS'
+    'GET, POST, PATCH, PUT, DELETE, OPTIONS'
   );
   next();
 });
 
-// Fix console.log typo in logging middleware
-app.use((req, res, next) => {
-  console.log('First Middleware');
-  next();
-});
-
-// GET endpoint for fetching posts
-app.get('/api/posts', (req, res) => {
-  const posts = [
-    {
-      id: 'snkfkjkf',
-      title: 'First server-side post',
-      content: 'This is coming from the server'
-    },
-    {
-      id: 'gyrrshjhk',
-      title: 'Second server-side post',
-      content: 'This is coming from the server'
-    }
-  ];
-  
-  res.status(200).json({
-    message: 'Posts fetched successfully!',
-    posts: posts
-  });
-});
-
-// POST endpoint for creating posts
-app.post("/api/posts", (req, res, next) => {
-  const post = {
-    id: Date.now().toString(),
-    title: req.body.title,
-    content: req.body.content
-  };
-  console.log('Post created:', post);
-  res.status(201).json({
-    message: 'Post added successfully',
-    post: post  // Send back the created post
-  });
-});
+// Routes
+app.use('/api/posts', postsRoutes);
 
 module.exports = app; 
