@@ -1,5 +1,6 @@
-main{  
-  margin-top: 16px;  
-  width: 80%;  
-  margin: auto;  
+main {
+  width: 90%;
+  max-width: 900px;
+  margin: 64px auto 1rem;
+  padding: 1rem;
 }  
