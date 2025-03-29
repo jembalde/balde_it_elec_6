@@ -1,0 +1,25 @@
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+li {
+  margin-left: 1rem;
+}
+
+/* Optional: Add hover effect for non-active links */
+a:hover:not(.mat-accent) {
+  opacity: 0.8;
+}
+
