@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const postsRoutes = require('./routes/posts');
@@ -31,6 +32,9 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+// Serve images statically
+app.use("/images", express.static(path.join("backend/images")));
 
 // Routes
 app.use('/api/posts', postsRoutes);
