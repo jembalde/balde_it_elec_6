@@ -1,38 +1,38 @@
 :host {
   display: block;
-  margin-top: 1rem;
+  margin-top: 0;
 }
 
 mat-accordion {
   display: grid;
-  gap: 1rem;
-  margin: 1rem 0;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
 }
 
 mat-expansion-panel {
-  border-radius: 8px !important;
+  border-radius: 4px !important;
   margin: 0 !important;
 }
 
 .post-image {
   width: 100%;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   text-align: center;
 }
 
 .post-image img {
-  max-height: 400px;
+  max-height: 300px;
   max-width: 100%;
-  border-radius: 8px;
+  border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 mat-expansion-panel-header {
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 mat-panel-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
 }
 
@@ -44,11 +44,19 @@ mat-panel-title {
 }
 
 mat-action-row {
-  padding: 1rem;
-  gap: 1rem;
+  padding: 0.5rem;
+  gap: 0.5rem;
   justify-content: flex-end;
 }
 
 mat-spinner {
   margin: 2rem auto;
+}
+
+mat-paginator {
+  margin-top: 1rem;
+}
+
+mat-accordion {
+  margin-bottom: 1rem;
 }  
