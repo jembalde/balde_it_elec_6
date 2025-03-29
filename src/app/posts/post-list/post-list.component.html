@@ -1,21 +1,31 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-<mat-accordion *ngIf="posts.length > 0 && !isLoading">
+<mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
   <mat-expansion-panel *ngFor="let post of posts">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{ post.title }}
       </mat-panel-title>
     </mat-expansion-panel-header>
+    
     <div class="post-image" *ngIf="post.imagePath">
       <img [src]="post.imagePath" [alt]="post.title">
     </div>
-    <p>{{ post.content }}</p>
+    
+    <div class="post-content">
+      {{ post.content }}
+    </div>
+    
     <mat-action-row>
-      <a mat-raised-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
-      <button mat-raised-button color="warn" (click)="onDelete(post.id)">DELETE</button>
+      <a mat-raised-button color="primary" [routerLink]="['/edit', post.id]">
+        <mat-icon>edit</mat-icon>
+      </a>
+      <button mat-raised-button color="warn" (click)="onDelete(post.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
+
 <mat-paginator 
   *ngIf="posts.length > 0"
   [length]="totalPosts" 
@@ -24,4 +34,7 @@
   [pageIndex]="currentPage - 1"
   (page)="onChangedPage($event)">
 </mat-paginator>
-<p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">No posts added yet!</p>  
+
+<p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">
+  No posts added yet! Click "New Post" to create one.
+</p>  
