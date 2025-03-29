@@ -1,12 +1,54 @@
-mat-spinner {
-  margin: auto;
-}
-
 :host {
   display: block;
   margin-top: 1rem;
 }
 
+mat-accordion {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+mat-expansion-panel {
+  border-radius: 8px !important;
+  margin: 0 !important;
+}
+
+.post-image {
+  width: 100%;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.post-image img {
+  max-height: 400px;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+mat-expansion-panel-header {
+  padding: 1.5rem;
+}
+
+mat-panel-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
 .info-text {
   text-align: center;
+  margin: 2rem;
+  color: #666;
+  font-size: 1.2rem;
+}
+
+mat-action-row {
+  padding: 1rem;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+mat-spinner {
+  margin: 2rem auto;
 }  
