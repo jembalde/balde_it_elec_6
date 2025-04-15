@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const router = express.Router();
 const Post = require('../models/post');
+const checkAuth = require('../middleware/check-auth');
 
 const MIME_TYPE_MAP = {
   'image/png': 'png',
@@ -77,12 +78,13 @@ router.get('/:id', (req, res, next) => {
 });
 
 // POST new post
-router.post('', multer({storage: storage}).single("image"), (req, res, next) => {
+router.post('', checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
   const url = req.protocol + '://' + req.get("host");
   const post = new Post({
     title: req.body.title,
     content: req.body.content,
-    imagePath: url + "/images/" + req.file.filename
+    imagePath: url + "/images/" + req.file.filename,
+    creator: req.userData.userId
   });
   
   post.save()
@@ -104,7 +106,7 @@ router.post('', multer({storage: storage}).single("image"), (req, res, next) => 
 });
 
 // PUT update post
-router.put("/:id", multer({storage: storage}).single("image"), (req, res, next) => {
+router.put("/:id", checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
   let imagePath = req.body.imagePath;
   if (req.file) {
     const url = req.protocol + '://' + req.get("host");
@@ -114,9 +116,10 @@ router.put("/:id", multer({storage: storage}).single("image"), (req, res, next) 
     _id: req.body.id,
     title: req.body.title,
     content: req.body.content,
-    imagePath: imagePath
+    imagePath: imagePath,
+    creator: req.userData.userId
   });
-  Post.updateOne({ _id: req.params.id }, post)
+  Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post)
     .then(result => {
       if (result.modifiedCount > 0) {
         res.status(200).json({
@@ -136,8 +139,8 @@ router.put("/:id", multer({storage: storage}).single("image"), (req, res, next) 
 });
 
 // DELETE post
-router.delete('/:id', (req, res, next) => {
-  Post.deleteOne({ _id: req.params.id })
+router.delete('/:id', checkAuth, (req, res, next) => {
+  Post.deleteOne({ _id: req.params.id, creator: req.userData.userId })
     .then(result => {
       if (result.deletedCount > 0) {
         res.status(200).json({ message: 'Post deleted!' });

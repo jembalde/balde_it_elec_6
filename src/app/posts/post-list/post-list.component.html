@@ -15,7 +15,7 @@
       {{ post.content }}
     </div>
     
-    <mat-action-row>
+    <mat-action-row *ngIf="userIsAuthenticated">
       <a mat-raised-button color="primary" [routerLink]="['/edit', post.id]">
         <mat-icon>edit</mat-icon>
       </a>
