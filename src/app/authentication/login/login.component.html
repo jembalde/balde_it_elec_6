@@ -4,7 +4,7 @@
   </mat-card-header>
   
   <mat-card-content>
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <app-spinner-overlay *ngIf="isLoading"></app-spinner-overlay>
     <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>

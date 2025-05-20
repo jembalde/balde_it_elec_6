@@ -1,20 +1,11 @@
+<app-spinner-overlay *ngIf="isLoading"></app-spinner-overlay>
 <mat-toolbar color="primary">
   <span>
-    <a routerLink="/">Messages</a>
+    <a routerLink="/">qwerty</a>
   </span>
-  <span class="spacer"></span>
-  <ul>
-    <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
-    </li>
-    <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
-    </li>
-    <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
-    </li>
-    <li *ngIf="userIsAuthenticated">
-      <button mat-button (click)="onLogout()">Logout</button>
-    </li>
-  </ul>
+  <div class="spacer"></div>
+  <button mat-button *ngIf="!userIsAuthenticated" routerLink="/login">Login</button>
+  <button mat-button *ngIf="!userIsAuthenticated" routerLink="/signup">Sign Up</button>
+  <button mat-button *ngIf="userIsAuthenticated" routerLink="/create">New Post</button>
+  <button mat-button *ngIf="userIsAuthenticated" (click)="onLogout()">Logout</button>
 </mat-toolbar>

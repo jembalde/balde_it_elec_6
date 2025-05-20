@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 html, body {
   height: 100%;
@@ -27,4 +28,186 @@ mat-card:hover {
 
 .mat-mdc-form-field {
   width: 100%;
+}
+
+/* Dark theme styles */
+.dark-theme {
+  background-color: #303030;
+  color: #fff;
+}
+
+.dark-theme .mat-card {
+  background-color: #424242;
+  color: #fff;
+}
+
+.dark-theme .mat-expansion-panel {
+  background-color: #424242;
+  color: #fff;
+}
+
+.dark-theme .mat-expansion-panel-header-title {
+  color: #fff;
+}
+
+.dark-theme .mat-expansion-panel-header-description {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dark-theme .mat-paginator {
+  background-color: #424242;
+  color: #fff;
+}
+
+.dark-theme .mat-paginator-page-size-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dark-theme .mat-select-value {
+  color: #fff;
+}
+
+.dark-theme .mat-select-arrow {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dark-theme .mat-form-field-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dark-theme .mat-input-element {
+  color: #fff;
+}
+
+.dark-theme .mat-form-field-underline {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Dark mode for Angular Material paginator */
+.dark-theme .mat-paginator,
+.dark-theme .mat-paginator-container {
+  background-color: #232323 !important;
+  color: #fff !important;
+}
+
+.dark-theme .mat-paginator-page-size-label,
+.dark-theme .mat-paginator-range-label,
+.dark-theme .mat-select-value,
+.dark-theme .mat-paginator-icon {
+  color: #fff !important;
+}
+
+.dark-theme .mat-paginator-navigation-previous,
+.dark-theme .mat-paginator-navigation-next,
+.dark-theme .mat-paginator-navigation-first,
+.dark-theme .mat-paginator-navigation-last {
+  color: #fff !important;
+}
+
+.dark-theme .mat-select-arrow {
+  color: #fff !important;
+}
+
+.dark-theme .mat-form-field-underline {
+  background-color: #fff !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .mat-toolbar {
+    padding: 0 8px;
+  }
+  
+  .mat-toolbar button {
+    padding: 0 8px;
+    min-width: 40px;
+  }
+  
+  .mat-card {
+    margin: 8px;
+  }
+  
+  .mat-expansion-panel {
+    margin: 8px;
+  }
+}
+
+/* Force dark mode for Angular Material paginator (classic and MDC) */
+.dark-theme .mat-paginator,
+.dark-theme .mat-paginator-container,
+.dark-theme .mat-mdc-paginator,
+.dark-theme .mat-mdc-paginator-container {
+  background-color: #232323 !important;
+  color: #fff !important;
+}
+
+.dark-theme .mat-paginator-page-size-label,
+.dark-theme .mat-paginator-range-label,
+.dark-theme .mat-mdc-paginator-page-size-label,
+.dark-theme .mat-mdc-paginator-range-label,
+.dark-theme .mat-select-value,
+.dark-theme .mat-mdc-select-value,
+.dark-theme .mat-paginator-icon,
+.dark-theme .mat-mdc-paginator-icon {
+  color: #fff !important;
+}
+
+.dark-theme .mat-paginator-navigation-previous,
+.dark-theme .mat-paginator-navigation-next,
+.dark-theme .mat-paginator-navigation-first,
+.dark-theme .mat-paginator-navigation-last,
+.dark-theme .mat-mdc-paginator-navigation-previous,
+.dark-theme .mat-mdc-paginator-navigation-next,
+.dark-theme .mat-mdc-paginator-navigation-first,
+.dark-theme .mat-mdc-paginator-navigation-last {
+  color: #fff !important;
+}
+
+.dark-theme .mat-select-arrow,
+.dark-theme .mat-mdc-select-arrow {
+  color: #fff !important;
+}
+
+.dark-theme .mat-form-field-underline,
+.dark-theme .mat-mdc-form-field-underline {
+  background-color: #fff !important;
+}
+
+/* Fix paginator dropdown panel */
+.dark-theme .mat-select-panel,
+.dark-theme .mat-mdc-select-panel {
+  background: #232323 !important;
+  color: #fff !important;
+}
+
+/* Dark mode for login/signup cards and form fields */
+.dark-theme .mat-card,
+.dark-theme .auth-card,
+.dark-theme .mat-form-field-appearance-outline .mat-form-field-outline,
+.dark-theme .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  background-color: #232323 !important;
+  color: #fff !important;
+  border-color: #555 !important;
+}
+
+.dark-theme .mat-form-field-label,
+.dark-theme .mat-input-element,
+.dark-theme input,
+.dark-theme textarea {
+  color: #fff !important;
+  caret-color: #fff !important;
+}
+
+.dark-theme .mat-form-field-flex {
+  background: #232323 !important;
+}
+
+.dark-theme .mat-form-field-outline,
+.dark-theme .mat-form-field-outline-thick {
+  border-color: #888 !important;
+}
+
+.dark-theme .mat-raised-button,
+.dark-theme .mat-button {
+  color: #fff !important;
 }

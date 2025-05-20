@@ -7,7 +7,6 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 
-// Connect to MongoDB - remove deprecated options
 mongoose.connect('mongodb+srv://jemmongo:VuvTldACNAbtTUxa@cluster0.kx8s8.mongodb.net/node-angular')
 .then(() => {
   console.log('Connected to database!');

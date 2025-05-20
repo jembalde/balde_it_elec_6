@@ -10,6 +10,7 @@ interface MongoPost {
   title: string;
   content: string;
   imagePath: string;
+  creator: string;
 }
 
 @Injectable({
@@ -21,8 +22,12 @@ export class PostsService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getPosts(postsPerPage: number, currentPage: number) {
-    const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
+  getPosts(postsPerPage: number, currentPage: number, searchQuery?: string) {
+    let queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
+    if (searchQuery) {
+      queryParams += `&search=${searchQuery}`;
+    }
+    
     this.http
       .get<{ message: string, posts: any[], maxPosts: number }>(
         'http://localhost:3000/api/posts' + queryParams
@@ -35,7 +40,11 @@ export class PostsService {
                 id: post._id,
                 title: post.title,
                 content: post.content,
-                imagePath: post.imagePath
+                imagePath: post.imagePath,
+                creator: post.creator,
+                comments: post.comments || [],
+                reactions: post.reactions || {},
+                userReaction: post.userReaction || null
               };
             }),
             maxPosts: postData.maxPosts
@@ -43,6 +52,7 @@ export class PostsService {
         })
       )
       .subscribe(transformedPostData => {
+        console.log(transformedPostData); // Log the transformed data
         this.posts = transformedPostData.posts;
         this.postsUpdated.next({
           posts: [...this.posts],
@@ -81,7 +91,8 @@ export class PostsService {
       _id: string,
       title: string,
       content: string,
-      imagePath: string
+      imagePath: string,
+      creator: string
     }>("http://localhost:3000/api/posts/" + id);
   }
 
@@ -98,7 +109,8 @@ export class PostsService {
         id: id,
         title: title,
         content: content,
-        imagePath: image
+        imagePath: image,
+        creator: '' // The backend will set this from the token
       };
     }
     this.http
@@ -109,5 +121,32 @@ export class PostsService {
       .subscribe(() => {
         this.router.navigate(["/"]);
       });
+  }
+
+  addComment(postId: string, text: string) {
+    return this.http.post<{ message: string; comment: any }>(
+      `http://localhost:3000/api/posts/${postId}/comments`,
+      { text }
+    );
+  }
+
+  deleteComment(postId: string, commentId: string) {
+    return this.http.delete<{ message: string }>(
+      `http://localhost:3000/api/posts/${postId}/comments/${commentId}`
+    );
+  }
+
+  reactToPost(postId: string, type: string) {
+    return this.http.post<{ message: string; reactions: any; userReaction: string | null }>(
+      `http://localhost:3000/api/posts/${postId}/reactions`,
+      { type }
+    );
+  }
+
+  reactToComment(postId: string, commentId: string, type: string) {
+    return this.http.post<{ message: string; reactions: any; userReaction: string | null }>(
+      `http://localhost:3000/api/posts/${postId}/comments/${commentId}/reactions`,
+      { type }
+    );
   }
 } 

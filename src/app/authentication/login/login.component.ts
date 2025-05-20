@@ -10,7 +10,14 @@ import { AuthService } from '../auth.service';
 export class LoginComponent {
   isLoading = false;
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService) {
+    // Subscribe to auth status changes to handle loading state
+    this.authService.getAuthStatusListener().subscribe(
+      isAuthenticated => {
+        this.isLoading = false;
+      }
+    );
+  }
 
   onLogin(form: NgForm) {
     if (form.invalid) {

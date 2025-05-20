@@ -9,7 +9,9 @@
 mat-accordion {
   display: grid;
   gap: 1rem;
-  margin: 1rem 0;
+  margin: 1rem;
+  width: calc(100% - 2rem);
+  box-sizing: border-box;
 }
 
 mat-expansion-panel {
@@ -50,12 +52,14 @@ mat-expansion-panel:hover {
 mat-expansion-panel-header {
   padding: 1rem !important;
   height: auto !important;
+  min-height: 48px;
 }
 
 mat-panel-title {
   font-size: 1.1rem;
   font-weight: 500;
   color: #333;
+  line-height: 1.4;
 }
 
 .post-content {
@@ -63,6 +67,7 @@ mat-panel-title {
   color: #666;
   line-height: 1.5;
   font-size: 1rem;
+  word-wrap: break-word;
 }
 
 mat-action-row {
@@ -96,16 +101,18 @@ mat-action-row mat-icon {
 
 .info-text {
   text-align: center;
-  margin: 4rem 0;
+  margin: 2rem 1rem;
   color: #666;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 300;
 }
 
 mat-paginator {
-  margin-top: 1rem;
+  margin: 1rem;
   border-radius: 8px;
   background-color: white;
+  width: calc(100% - 2rem);
+  box-sizing: border-box;
 }
 
 button[mat-raised-button] {
@@ -114,8 +121,347 @@ button[mat-raised-button] {
 
 mat-spinner {
   margin: 2rem auto;
+  display: block;
 }
 
 mat-accordion {
   margin-bottom: 1rem;
+}
+
+.search-container {
+  padding: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-field {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .search-container {
+    padding: 0.5rem;
+  }
+
+  .search-field {
+    font-size: 14px;
+  }
+
+  .search-field .mat-form-field-wrapper {
+    margin-bottom: -1.25em;
+  }
+
+  mat-accordion {
+    margin: 0.5rem;
+    width: calc(100% - 1rem);
+  }
+
+  .post-image img {
+    max-height: 200px;
+  }
+
+  mat-paginator {
+    margin: 0.5rem;
+    width: calc(100% - 1rem);
+    font-size: 0.9rem;
+  }
+
+  mat-paginator .mat-mdc-paginator-page-size {
+    display: none;
+  }
+
+  mat-spinner {
+    margin: 1rem auto;
+  }
+
+  .info-text {
+    margin: 1.5rem 0.5rem;
+    font-size: 1rem;
+  }
+
+  mat-expansion-panel-header {
+    padding: 0.75rem !important;
+  }
+
+  mat-panel-title {
+    font-size: 1rem;
+  }
+
+  .post-content {
+    padding: 0 0.75rem 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  mat-action-row {
+    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  mat-action-row a[mat-raised-button],
+  mat-action-row button[mat-raised-button] {
+    min-width: 36px;
+    width: 36px;
+    height: 36px;
+  }
+
+  mat-action-row mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+  }
+}
+
+/* Styles for the comments section */
+.comments-section {
+  margin-top: 1.5rem;
+  padding: 0 1rem;
+}
+
+.comments-section h4 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Styles for individual comments */
+.comment-list {
+  margin-top: 1rem;
+}
+
+.comment {
+  border-top: 1px solid #eee;
+  padding: 1rem 0;
+}
+
+.comment:last-child {
+    border-bottom: 1px solid #eee; /* Optional: Add bottom border for the last comment */
+}
+
+.comment-text {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.comment-meta {
+  font-size: 0.8rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.comment-date {
+    margin-right: auto; /* Pushes the delete button to the right */
+}
+
+/* Refine reaction button size and appearance */
+.reactions-row button {
+    min-width: 30px !important; /* Make buttons smaller */
+    width: 30px !important;
+    height: 30px !important;
+    padding: 0 !important;
+    margin: 0 0.2rem !important; /* Adjust spacing */
+    display: flex; /* Center icon/emoji */
+    align-items: center;
+    justify-content: center;
+    border-radius: 50% !important; /* Circular buttons */
+    color: #666; /* Default reaction icon color */
+}
+
+/* Style for emoji within the button */
+.reactions-row button .emoji {
+    font-size: 1rem; /* Smaller emoji size */
+    line-height: 1; /* Adjust line height */
+    margin: 0; /* Remove default margin */
+}
+
+/* Active reaction style */
+.active-reaction {
+    background-color: #e0e0e0 !important; /* Light grey background */
+    color: #007bff !important; /* Blue color for active icon/emoji */
+    transform: scale(1.1); /* Slightly larger */
+}
+
+/* Dark theme adjustments for comments and reactions */
+.dark-theme .comments-section h4,
+.dark-theme .comment-text {
+    color: #eee !important;
+}
+
+.dark-theme .comment {
+    border-top-color: #555 !important;
+    border-bottom-color: #555 !important;
+}
+
+.dark-theme .comment-meta {
+    color: #ccc !important;
+}
+
+.dark-theme .reactions-row button {
+    color: #ccc !important; /* Light grey for dark theme */
+}
+
+.dark-theme .active-reaction {
+    background-color: #555 !important;
+    color: #00aaff !important; /* Lighter blue for dark theme */
+}
+
+/* Styles for the add comment form */
+.add-comment-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.add-comment-form .comment-field {
+  flex: 1;
+  min-width: 200px;
+}
+
+.add-comment-form button {
+  align-self: flex-end;
+}
+
+/* Styles for the Facebook-like reaction hover effect */
+.reactions-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  position: relative;
+}
+
+.initial-reaction {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.initial-reaction .emoji {
+  font-size: 1rem;
+}
+
+.initial-reaction .reaction-count {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.react-button {
+  /* Style for the new react button */
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 0.5rem;
+  border-radius: 20px;
+  min-width: unset;
+  line-height: normal;
+  height: 30px; /* Adjust height to align with emoji/count */
+}
+
+.react-button mat-icon {
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.reactions-container .reaction-options {
+  display: flex;
+  gap: 0.25rem;
+  background: white;
+  padding: 0.25rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  position: absolute; /* Position relative to reactions-container */
+  bottom: 100%; /* Position above the button */
+  left: 0; /* Align with the button */
+  transform: translateY(-5px); /* Small lift animation */
+  z-index: 10; /* Ensure it's above other content */
+}
+
+.react-button:hover + .reaction-options { /* Apply hover to button and target the next sibling */
+  opacity: 1;
+  transform: translateY(0); /* End position for lift animation */
+}
+
+/* Also apply hover effect if hovering directly over options (for usability) */
+.reactions-container .reaction-options:hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dark-theme .initial-reaction .reaction-count {
+  color: #ccc;
+}
+
+.dark-theme .react-button {
+  /* Dark theme for react button */
+  color: #eee;
+}
+
+@media (max-width: 600px) {
+  .comments-section {
+    margin-top: 1rem;
+    padding: 0 0.75rem;
+  }
+
+  .comments-section h4 {
+    font-size: 1rem;
+  }
+
+  .comment {
+    padding: 0.75rem 0;
+  }
+
+  .comment-text {
+    font-size: 0.95rem;
+  }
+
+  .comment-meta {
+    font-size: 0.75rem;
+  }
+
+  .add-comment-form {
+    gap: 0.25rem;
+  }
+
+  .add-comment-form .comment-field {
+    min-width: 150px;
+  }
+
+  .add-comment-form button {
+    padding: 0 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .reactions-container .reaction-options {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 0.5rem;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0; /* Hide by default on mobile too */
+  }
+
+  /* Consider a different trigger than hover for mobile if needed later */
+  /* .reactions-container:hover .reaction-options on mobile */
+
+  .reactions-container .reaction-options button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .reactions-container .reaction-options button .emoji {
+    font-size: 1.2rem;
+  }
 }  
